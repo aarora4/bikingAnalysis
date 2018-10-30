@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<title>Biking Data</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="prism.css">
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+body{
+  background-image: url(https://static1.squarespace.com/static/52be003ae4b0661652b34834/t/5774c59737c58164fa2b5767/1467270641429/);
+    background-size: cover;
+    background-attachment: fixed;
+}
+  .head-page {
+    height: 70vh;
+    width: 100%;
+  }
+  .text-head {
+    text-align: center; color: white;
+    padding: 65px;
+    font-family: Open Sans, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+  }
+  .my-heading {
+    text-align: center;
+    color: black;
+    font-family: Open Sans, sans-serif;
+    font-size: 3rem;
+    font-weight: 500;
+    padding: 20px;
+  }
+  .fonty {
+    text-align: center;
+    margin-top: 2.75rem;
+    color: white;
+    font-family: Open Sans
+  }
+</style>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Mushrooms', 3],
+          ['Onions', 1],
+          ['Olives', 1],
+          ['Zucchini', 1],
+          ['Pepperoni', 2]
+        ]);
+
+        // Set chart options
+        var options = {'title':'How Much Pizza I Ate Last Night',
+                       'width':600,
+                       'height':300};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+<body>
+
+<!-- Side Navigation -->
+<nav class="w3-sidebar w3-bar-block w3-card w3-animate-left w3-center" style="display:none" id="mySidebar">
+  <h1 class="w3-xxxlarge w3-text-theme">Side Navigation</h1>
+  <button class="w3-bar-item w3-button" onclick="w3_close()">Close <i class="fa fa-remove"></i></button>
+  <a href="#" class="w3-bar-item w3-button">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button">Link 4</a>
+</nav>
+
+<!-- Header -->
+<div class="head-page">
+  <div style="width: 60%; background-color: black; margin-top: 40vh; opacity: 0.6; height: 28vh; margin-left: auto; margin-right: auto;"><h1 class="text-head" >LOS ANGELES BIKE <strong>DATA ANALYSIS</strong></h1></div>
+</div>
+<div style="padding: 0; background-color: white">
+  <div style="padding: 0; background-color: white">
+  <div class="w3-row-padding w3-center w3-margin-top">
+  <h1 class='my-heading'><strong>Hourly</strong> Plan Usages</h1>
+  <div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+format = "%Y-%m-%dT%H:%M:%S"
+
+start_time = pd.to_datetime(train_df["Start Time"], format=format)
+
+time = pd.DatetimeIndex(start_time)
+
+start_hour = pd.DataFrame(time.hour + time.minute/60)
+
+
+
+fig, ax = plt.subplots(figsize=(16, 8))
+
+for ph in ["Monthly Pass", "Flex Pass", "Walk-up"]:
+
+    d = start_hour[train_df["Passholder Type"] == ph]
+
+    plt.hist(d.values, bins=100, range=(0,24),  density=True, label=ph, alpha=0.25)
+
+    plt.xlabel("Hour")
+
+plt.title("Plan Usage throughout the Day")
+
+plt.legend()
+
+
+
+
+
+for ph in ["Monthly Pass", "Flex Pass", "Walk-up"]:
+
+    fig, ax = plt.subplots(figsize=(16, 8))
+
+    d = start_hour[train_df["Passholder Type"] == ph]
+
+    plt.hist(d.values, bins=100, range=(0,24),  density=True, label=ph, alpha=0.25)
+
+    plt.xlabel("Hour")
+
+    plt.title(ph + " Usage throughout the Day")
+
+    </code></pre>
+
+
+
+    </div>
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:310px">
+    <br>
+  <img src="output1-3.png" style='height: 100%; width: 100%; object-fit: contain'>
+  </div>
+</div>
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:310px">
+    <br>
+  <img src="output1-2.png" style='height: 100%; width: 100%; object-fit: contain'>
+  </div>
+</div>
+<div class="w3-third">
+  <div class="w3-card w3-container" style="min-height:310px">
+    <br>
+  <img src="output1-1.png" style='height: 100%; width: 100%; object-fit: contain'>
+  </div>
+</div>
+</div>
+<br>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:550px">
+
+    <div class="w3-card w3-container" style="max-height:550px">
+      <br>
+    <img src="output1.png" style='height: 50%; width: 50%; object-fit: contain'>
+    </div>
+
+</div>
+<br>
+</div>
+<div style="padding: 0; background-color: #DCDCDC ">
+<h1 class='my-heading'><strong>Average</strong> Trip Distances by Plan</h1>
+<div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+q = train_df["Distance"].quantile(0.99)
+
+d = train_df[train_df['Distance'] < q]
+
+d = d.groupby('Passholder Type').mean()
+
+
+
+print(d)
+
+d = d.reset_index()
+
+labels = list(d['Passholder Type'])
+
+values = list(d['Distance'])
+
+fig, ax = plt.subplots(figsize=(24, 8))
+
+plt.bar(labels, values)
+
+plt.ylabel("Average Distance (km)")
+    </code></pre>
+
+
+</div>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:550px">
+
+    <div class="w3-card w3-container" style="max-height:550px">
+      <br>
+    <img src="output2.png" style='height: 75%; width: 75%; object-fit: contain'>
+   <!--  <div id="chart_div" style="display: block; margin-right: auto; margin-left: auto; width: 50%;"></div> -->
+    </div>
+
+</div>
+<br>
+</div>
+<div style="padding: 0; background-color: white; ">
+<h1 class='my-heading'><strong>Average</strong> Trip Distances by Station</h1>
+<div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+average_distance_df = train_df.groupby('Starting Station ID').mean()
+
+q = average_distance_df["Distance"].quantile(0.99)
+average_distance_df = average_distance_df[average_distance_df['Distance'] < q]
+print("The Starting Station with the greatest average trip distance is Station ID "
++ str(average_distance_df['Distance'].idxmax()) + " with an average of " + str(average_distance_df['Distance'].max()))
+average_distance_df = average_distance_df.reset_index()
+average_distance_df.head()
+
+fig, ax = plt.subplots(figsize=(24, 8))
+plt.bar(average_distance_df['Starting Station ID'], average_distance_df['Distance'])
+
+
+plt.xlabel("Starting Station")
+plt.ylabel("Average Distance (km)")
+    </code></pre>
+
+
+</div>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:550px">
+
+    <div class="w3-card w3-container" style="max-height:550px">
+      <br>
+    <img src="output3.png" style='height: 75%; width: 75%; object-fit: contain'>
+    </div>
+
+</div>
+<br>
+</div>
+
+
+
+<div style="padding: 0; background-color: #DCDCDC; ">
+<h1 class='my-heading'><strong>Miscellaneous</strong> Analysis</h1>
+<div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+pass_type_occurences = train_df.groupby('Passholder Type').size()
+print(pass_type_occurences)
+    </code></pre>
+
+
+</div>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:550px">
+
+    <div class="w3-card w3-container" style="max-height:550px">
+      <br>
+    <ul style="margin-right: auto; margin-left: auto; list-style-position: inside; text-align: left; width: 40vh">
+      <li>Flex Pass&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp9517</li>
+<li>Monthly Pass&nbsp&nbsp&nbsp&nbsp81304</li>
+<li>Staff Annual&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp382</li>
+<li>Walk-up&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp41224</li></ul>
+<h3>Based off this, we can conclude that all non-walk up riders use bikeshare in their daily commute</h3>
+<h3>That's <strong>91203 Riders</strong></h3>
+    </div>
+
+</div>
+<br>
+<div style="padding: 0; background-color: white; ">
+  <br>
+<div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+from math import sin, cos, sqrt, atan2, radians
+
+R = 6371 #radius of earth in KM
+
+lat1 = train_df["Starting Station Latitude"].apply(radians)
+lon1 = train_df["Starting Station Longitude"].apply(radians)
+lat2 = train_df["Ending Station Latitude"].apply(radians)
+lon2 = train_df["Ending Station Longitude"].apply(radians)
+
+dlat = lat2 - lat1
+dlon = lon1 - lon2
+
+a = np.sin(dlat/2)**2 + np.cos(lat1) * np.cos(lat2) * np.sin(dlon/2)**2
+c = 2 * np.arctan2(np.sqrt(a), np.sqrt(1 - a))
+
+train_df["Distance"] = R * c
+train_df["Distance"].describe()
+print(train_df['Distance'].median())
+    </code></pre>
+</div>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:550px">
+
+    <div class="w3-card w3-container" style="max-height:550px">
+      <br>
+      <div style="margin-right: auto; margin-left: auto; list-style-position: inside; text-align: left; width: 20vh">
+    <p>count&nbsp&nbsp&nbsp&nbsp131336.000000<br>
+mean&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp4.895506<br>
+std&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp219.406600<br>
+min&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0.000000<br>
+25%&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0.578459<br>
+50%&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp0.960393<br>
+75%&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp1.456518<br>
+max&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp12576.850026</p><br>
+</div>
+
+<h3>Based off this, we can conclude that the average distance traveled is <strong>4.895506 km</strong></h3>
+<h3>The data has extreme outliers so the median: <strong>0.960392 km </strong>better represents the data</h3>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div style="padding: 0; background-color: #DCDCDC; ">
+  <br>
+<div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+start_station_occurences = train_df.groupby('Starting Station ID').size()
+
+stop_station_occurences = train_df.groupby('Ending Station ID').size()
+
+start_station_occurences.idxmax()
+
+stop_station_occurences.idxmax()
+    </code></pre>
+</div>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:550px">
+
+
+<h3>Based off this, we can conclude that the most used start station is <strong>#3069</strong></h3>
+<h3>The most used stop station is <strong>#3005</strong></h3>
+
+    </div>
+
+</div>
+
+<div style="padding: 0; background-color: white; ">
+  <br>
+  <h1 class='my-heading'><strong>Machine Learning</strong> Analysis</h1>
+<div style="margin-left: auto; margin-right: auto; width: 70%;">
+
+    <pre><code class="language-python">
+
+temp = pd.DataFrame(data=[train_df['Duration'], train_df['Starting Station Latitude'],train_df['Starting Station Longitude'],
+train_df['Ending Station Latitude'], train_df['Ending Station Longitude'],train_df['Plan Duration']],index=['Duration',
+'Starting Station Latitude','Starting Station Longitude', 'Ending Station Latitude','Ending Station Longitude','Plan Duration'])
+
+
+train = temp.T
+train = train.reset_index(drop=True)
+train = pd.concat([dist,train, pd.get_dummies(data=train_df['Passholder Type']).reset_index(),
+pd.get_dummies(data=train_df['Trip Route Category'],drop_first=True).reset_index()], axis=1)
+
+train = train.drop('index',axis=1)
+train = train.dropna()
+X = train.drop(columns=['Flex Pass','Monthly Pass','Walk-up','Plan Duration'])
+Y = train['Walk-up']
+
+from sklearn.model_selection import train_test_split
+X_train,X_test,Y_train,Y_test = train_test_split(X,Y,train_size =0.7,test_size=0.3)
+
+from sklearn.tree import DecisionTreeClassifier
+clf = DecisionTreeClassifier()
+clf.fit(X_train, Y_train)
+Y_pred= clf.predict(X_test)
+
+from sklearn.metrics import accuracy_score
+
+print(accuracy_score(Y_pred, Y_test))
+print(classification_report(Y_pred, Y_test))
+    </code></pre>
+</div>
+<div class="w3-row-padding w3-center w3-margin-top" style="max-height:800px">
+
+  <h3>Here we utilize the Decision Tree structure in order to predict if a given data entry is a walk-up plan or not</h3>
+  <br>
+  <img src="output4.png">
+  <h3>Our model has an accuracy score of <strong>76.9%</strong></h3>
+  <h3><strong>Precision:</strong> the ratio tp / (tp + fp) where tp is the number of true positives and fp the number of false positives.</h3>
+  <h3><strong>Recall:</strong> the ratio tp / (tp + fn) where tp is the number of true positives and fn the number of false negatives.</h3>
+  <h3><strong>F1-score:</strong> interpreted as a weighted average of the precision and recall, where an F1 score reaches its best value at 1 and worst score at 0</h3>
+  <br>
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+</div>
+<br>
+</div>
+</div>
+
+
+
+<!-- Footer -->
+<footer class="w3-container w3-theme-dark w3-padding-16">
+  <p class="fonty">Copyright © 2018 Avi Arora. All Rights Reserved.</p>
+
+</footer>
+<script src="prism.js"></script>
+<!-- Script for Sidebar, Tabs, Accordions, Progress bars and slideshows -->
+
+</body>
+</html>
